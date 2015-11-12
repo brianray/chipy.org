@@ -1,16 +1,11 @@
-"""
-WSGI config for chipy2 project.
+from django.core.handlers.wsgi import WSGIHandler
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+import pinax.env
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
-"""
 
-import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "chipy_org.settings")
+# setup the environment for Django and Pinax
+pinax.env.setup_environ(__file__)
 
-from django.core.wsgi import get_wsgi_application
-from dj_static import Cling
 
-application = Cling(get_wsgi_application())
+# set application for WSGI processing
+application = WSGIHandler()
